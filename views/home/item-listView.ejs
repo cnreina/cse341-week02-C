@@ -1,0 +1,72 @@
+<%- include('../includes/headInclude.ejs') %>
+    <link rel="stylesheet" href="/css/item.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigationInclude.ejs') %>
+            <main>
+                <div class="filter">
+                    <div class="filter_form_container">
+                        <form method="POST" action="/filter-by-tag" class="filter_form">
+                        <input type="text" name="itemTag" placeholder='Tag'>
+                        <button type="submit" value="Submit">Submit-Reset</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <% if (items.length > 0) { %>
+                    <div class="grid">
+                        <% for (let item of items) { %>
+                            <% if (itemTagsArray.length > 0) { %>
+                                <% let tagCount = 0; %>
+                                <% for (let itemTag of item.tags) { %>
+                                    <% if (itemTagsArray.includes(itemTag)) { %>
+                                        <% tagCount = tagCount + 1; %>
+                                    <% } %>
+                                <% } %>
+                                <% if (tagCount === 0) { %>
+                                    <% continue %>
+                                <% } %>
+                            <% } %>
+
+                            <article class="card item">
+                                <header class="card__header">
+                                    <h1 class="item__name">
+                                        <%= item.name %>
+                                    </h1>
+                                </header>
+                                <div class="card__image">
+                                    <img src="<%= item.imageUrl %>" alt="<%= item.name %>">
+                                </div>
+                                <div class="card__content">
+                                    <h2 class="item__price">$
+                                        <%= item.price %>
+                                    </h2>
+                                    <p class="item__description">
+                                        <%= item.description %>
+                                    </p>
+                                </div>
+                                <% if(item.tags.length > 0){ %> 
+                                    <div class="card__content">
+                                        <p class="item__description">Tags: <%= item.tags %> </p>
+                                    </div>
+                                <% } %>
+                            </article>
+                        <% } %>
+                    </div>
+                <% } else { %>
+                    <h1>No items Found!</h1>
+                <% } %>
+            </main>
+        
+        <!-- load javascript files -->
+        <% include('../includes/scriptsInclude.ejs') %>
+
+        <!-- display errors -->
+        <% if(errorsArray.length > 0){ %>
+            <script>
+            errorAlert('<%= errorsArray %>');
+            </script>
+        <% } %>
+
+    <%- include('../includes/endInclude.ejs') %>
