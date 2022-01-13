@@ -45,18 +45,18 @@ app.use(errorController.get404);
 // start server
 mongoose.connect('mongodb+srv://cnreina:mPass_3762@cluster0.gcajw.mongodb.net/shop?retryWrites=true&w=majority')
 .then(result => {
-  User.findOne().then(user => {
-    if (!user) {
-      const user = new User({
-        name: 'Carlos',
-        email: 'cnreina@test.com',
-        cart: {
-          items: []
-        }
-      });
-      user.save();
-    }
-  });
+  // User.findOne().then(user => {
+  //   if (!user) {
+  //     const user = new User({
+  //       name: 'Carlos',
+  //       email: 'cnreina@test.com',
+  //       cart: {
+  //         items: []
+  //       }
+  //     });
+  //     user.save();
+  //   }
+  // });
   app.listen(3000);
 })
 .catch(err => {
