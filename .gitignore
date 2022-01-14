@@ -8,6 +8,7 @@ npm-debug.log
 .DS_Store
 *.code-workspace
 .vscode
+mongodbstring.txt
 
 # Docker
 Dockerfile
