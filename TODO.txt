@@ -1,12 +1,1 @@
 
-For your team activity this lesson you will complete the following:
-
-    Create a Node webpage that will read data from the following json: 'https://byui-cse.github.io/cse341-course/lesson03/items.json'.
-
-    Display data in a professional manner.
-
-    Incorporate a way to search through the data and only display associated search results.
-
-    Please spend at least 1 hour on this assignment before reviewing the solution.
-
-https://byui-cse.github.io/cse341-course/lesson03/teach.html

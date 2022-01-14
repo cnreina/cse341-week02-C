@@ -13,7 +13,6 @@
                         </form>
                     </div>
                 </div>
-                
                 <% if (items.length > 0) { %>
                     <div class="grid">
                         <% for (let item of items) { %>
@@ -46,7 +45,7 @@
                                         <%= item.description %>
                                     </p>
                                 </div>
-                                <% if(item.tags.length > 0){ %> 
+                                <% if(item.tags.length > 0){ %>
                                     <div class="card__content">
                                         <p class="item__description">Tags: <%= item.tags %> </p>
                                     </div>

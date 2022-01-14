@@ -4,31 +4,40 @@ let errorsArray = []
 let itemTagsArray = []
 
 exports.getIndex = (req, res, next) => {
-  Item.getItems(items => {
-    res.render('home/indexView', {
-      items: items,
-      pageTitle: 'Home',
-      path: '/',
-      errorsArray: errorsArray,
-      errorsArrayCount : errorsArray.length,
-      itemTagsArray: itemTagsArray,
-      itemTagsArrayCount : itemTagsArray.length
+  Item.find()
+    .then(items => {
+      console.log(items);
+      res.render('home/indexView', {
+        items: items,
+        pageTitle: 'Home',
+        path: '/',
+        errorsArray: errorsArray,
+        errorsArrayCount : errorsArray.length,
+        itemTagsArray: itemTagsArray,
+        itemTagsArrayCount : itemTagsArray.length
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
-  });
 };
 
 exports.getAllItems = (req, res, next) => {
-  Item.getItems(items => {
-    res.render('home/item-listView', {
-      items: items,
-      pageTitle: 'All Items',
-      path: '/item-list',
-      errorsArray : errorsArray,
-      errorsArrayCount : errorsArray.length,
-      itemTagsArray: itemTagsArray,
-      itemTagsArrayCount : itemTagsArray.length
+  Item.find()
+    .then(items => {
+      res.render('home/item-listView', {
+        items: items,
+        pageTitle: 'All items',
+        path: '/item-list',
+        errorsArray : errorsArray,
+        errorsArrayCount : errorsArray.length,
+        itemTagsArray: itemTagsArray,
+        itemTagsArrayCount : itemTagsArray.length
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
-  });
 };
 
 exports.filterItemsByTag = (req, res, next) => {
