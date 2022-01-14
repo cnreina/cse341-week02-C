@@ -9,6 +9,7 @@ npm-debug.log
 *.code-workspace
 .vscode
 mongodbstring.txt
+cnrDocs
 
 # Docker
 Dockerfile
