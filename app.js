@@ -62,3 +62,9 @@ fs.readFile(filePath, (err, fileContent) => {
     });
   }
 });
+
+// Every Heroku app has its own Heroku-hosted Git repo.
+// You deploy new versions of your app by pushing your code changes to this repo.
+// In order to do that, your local Git repo needs to know the URL of the Heroku-hosted repo.
+// 
+// https://devcenter.heroku.com/articles/preparing-a-codebase-for-heroku-deployment
