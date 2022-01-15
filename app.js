@@ -5,8 +5,8 @@
 
 /* Heroku with mongoDB
   Every Heroku app has its own Heroku-hosted Git repo.
-  You deploy new versions of your app by pushing your code changes to this repo.
-  In order to do that, your local Git repo needs to know the URL of the Heroku-hosted repo.
+  Deploy new versions by pushing code changes to this repo.
+  Local Git repo needs to know the URL of the Heroku-hosted repo.
 
   Heroku's architecture requires the use of config vars.
   Express calls .listen(PORT), which makes use of the Heroku config var.
