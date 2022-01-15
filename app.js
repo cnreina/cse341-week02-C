@@ -42,10 +42,7 @@ const cors = require('cors')
 
 const LOCAL_PORT = 3000;
 const HEROKU_APP_URL = "https://cse341nodejsapp.herokuapp.com/";
-const corsOptions = {
-  origin: HEROKU_APP_URL,
-  optionsSuccessStatus: 200
-};
+const corsOptions = { origin: HEROKU_APP_URL, optionsSuccessStatus: 200 };
 
 // routes
 const homeRoutes = require('./routes/homeRoute');
