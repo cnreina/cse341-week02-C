@@ -1,0 +1,1 @@
+mongodb+srv://cnreina:mPass_3762@cluster0.gcajw.mongodb.net/shop?retryWrites=true&w=majority

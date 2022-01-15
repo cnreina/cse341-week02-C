@@ -8,7 +8,6 @@ npm-debug.log
 .DS_Store
 *.code-workspace
 .vscode
-mongodbstring.txt
 cnrDocs
 
 # Docker
