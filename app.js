@@ -63,7 +63,7 @@ app.use(cors(corsOptions));
 
 // prepare mongoDB connection
 const filePath = path.join(
-  path.dirname(process.mainModule.filename),
+  path.dirname(process.main.filename),
   'data',
   'mongodbstring.txt'
 );
