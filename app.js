@@ -35,14 +35,15 @@ const path = require('path');
 const fs = require('fs');
 const cors = require('cors')
 
+const HEROKU_APP_URL = "https://cse341nodejsapp.herokuapp.com/";
+const corsOptions = {
+  origin: HEROKU_APP_URL,
+  optionsSuccessStatus: 200
+};
+
 // routes
 const homeRoutes = require('./routes/homeRoute');
 const errorController = require('./controllers/errorController');
-
-const corsOptions = {
-  origin: "https://cse341nodejsapp.herokuapp.com/",
-  optionsSuccessStatus: 200
-};
 
 // app
 const app = express();
