@@ -64,19 +64,17 @@ fs.readFile(filePath, (err, fileContent) => {
   if (err) {
     console.log(err);
   } else {
-    const options = {
+    // START SERVER
+    const mongoDbOptions = {
       useUnifiedTopology: true,
       useNewUrlParser: true,
       family: 4
     };
-
     // Use || to initialize PORT's value to the first defined variable.
     // When app is run on Heroku, process.env.PORT is defined and passed to .listen().
     const MONGODB_URL = process.env.MONGODB_URL || fileContent.toString();
     const PORT = process.env.PORT || 3000;
-
-    // START SERVER
-    mongoose.connect(MONGODB_URL, options)
+    mongoose.connect(MONGODB_URL, mongoDbOptions)
     .then(result => {
       app.listen(PORT);
     })
@@ -85,4 +83,3 @@ fs.readFile(filePath, (err, fileContent) => {
     });
   }
 });
-
