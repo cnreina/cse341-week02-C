@@ -35,6 +35,7 @@ const path = require('path');
 const fs = require('fs');
 const cors = require('cors')
 
+const LOCAL_PORT = 3000;
 const HEROKU_APP_URL = "https://cse341nodejsapp.herokuapp.com/";
 const corsOptions = {
   origin: HEROKU_APP_URL,
@@ -74,7 +75,7 @@ fs.readFile(filePath, (err, fileContent) => {
     // Use || to initialize PORT's value to the first defined variable.
     // When app is run on Heroku, process.env.PORT is defined and passed to .listen().
     const MONGODB_URL = process.env.MONGODB_URL || fileContent.toString();
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || LOCAL_PORT;
     mongoose.connect(MONGODB_URL, mongoDbOptions)
     .then(result => {
       app.listen(PORT);
