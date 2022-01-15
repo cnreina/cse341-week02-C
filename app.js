@@ -1,3 +1,8 @@
+/*	Carlos N Reina
+  cnreina@gmail.com
+  cnreina.com
+*/
+
 /* Heroku with mongoDB
   Every Heroku app has its own Heroku-hosted Git repo.
   You deploy new versions of your app by pushing your code changes to this repo.
