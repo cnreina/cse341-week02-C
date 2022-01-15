@@ -45,19 +45,51 @@ mongoose.connect(MONGODB_URL, options)
 
 push your application to Heroku master and check if your app works on Heroku.
 
-Heroku logs command: heroku logs --tail
+
+
+Heroku logs command:
+heroku logs --tail
 
 install:
 sudo npm install --save heroku
 sudo npm install -g heroku
 
+Heroku login:
+heroku login
+
 add remote:
 heroku git:remote -a cse341nodejsapp
+
+Reset/purge an app’s Heroku Git repository with the heroku-repo CLI plugin:
+heroku plugins:install heroku-repo
+heroku repo:reset --app appname
 
 push local git branch to heroku main:
 git push heroku master:main
 
-
+Ensure that at least one instance of the app is running:
+heroku ps:scale web=1
 
 
 https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+https://devcenter.heroku.com/articles/git#tracking-your-app-in-git
+https://devcenter.heroku.com/articles/deploying-nodejs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
