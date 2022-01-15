@@ -14,7 +14,7 @@
   When app is run on Heroku, process.env.PORT is defined and passed to .listen().
   Running locally, the config var is undefined and the localhost port is passed to .listen().
 
-  Commands:
+  Basic Commands:
   sudo npm install -g heroku
   heroku plugins:install heroku-repo
   heroku login
