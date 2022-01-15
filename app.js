@@ -1,3 +1,32 @@
+/* Heroku with mongoDB
+  Every Heroku app has its own Heroku-hosted Git repo.
+  You deploy new versions of your app by pushing your code changes to this repo.
+  In order to do that, your local Git repo needs to know the URL of the Heroku-hosted repo.
+
+  Heroku's architecture requires the use of config vars.
+  Express calls .listen(PORT), which makes use of the Heroku config var.
+  Using || to initialize PORT's value to the first defined variable.
+  When app is run on Heroku, process.env.PORT is defined and passed to .listen().
+  Running locally, the config var is undefined and the localhost port is passed to .listen().
+
+  Commands:
+  sudo npm install -g heroku
+  heroku plugins:install heroku-repo
+  heroku login
+  heroku git:remote -a cse341nodejsapp
+  git push heroku master:main
+  heroku ps:scale web=1
+
+  heroku logs --tail
+  heroku repo:reset --app appname
+
+  https://devcenter.heroku.com/articles/preparing-a-codebase-for-heroku-deployment
+  https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+  https://devcenter.heroku.com/articles/git#tracking-your-app-in-git
+  https://devcenter.heroku.com/articles/deploying-nodejs
+
+*/
+
 // includes
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -5,7 +34,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors')
-
 
 // routes
 const homeRoutes = require('./routes/homeRoute');
@@ -15,7 +43,6 @@ const corsOptions = {
   origin: "https://cse341nodejsapp.herokuapp.com/",
   optionsSuccessStatus: 200
 };
-
 
 // app
 const app = express();
@@ -27,8 +54,7 @@ app.use(homeRoutes);
 app.use(errorController.get404);
 app.use(cors(corsOptions));
 
-
-// connect mongoDB
+// prepare mongoDB connection
 const filePath = path.join(
   path.dirname(process.mainModule.filename),
   'data',
@@ -44,15 +70,12 @@ fs.readFile(filePath, (err, fileContent) => {
       family: 4
     };
 
-    // Heroku's architecture requires the use of config vars.
-    // Express calls .listen(PORT), which makes use of the Heroku config var
-    // Using || to initialize PORT's value to the first defined variable.
+    // Use || to initialize PORT's value to the first defined variable.
     // When app is run on Heroku, process.env.PORT is defined and passed to .listen().
-    // Running locally, the config var is undefined and the localhost port is passed to .listen().
     const MONGODB_URL = process.env.MONGODB_URL || fileContent.toString();
     const PORT = process.env.PORT || 3000;
 
-    // start server
+    // START SERVER
     mongoose.connect(MONGODB_URL, options)
     .then(result => {
       app.listen(PORT);
@@ -63,8 +86,3 @@ fs.readFile(filePath, (err, fileContent) => {
   }
 });
 
-// Every Heroku app has its own Heroku-hosted Git repo.
-// You deploy new versions of your app by pushing your code changes to this repo.
-// In order to do that, your local Git repo needs to know the URL of the Heroku-hosted repo.
-// 
-// https://devcenter.heroku.com/articles/preparing-a-codebase-for-heroku-deployment
