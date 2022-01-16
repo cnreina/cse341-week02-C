@@ -1,4 +1,5 @@
-const Item = require('../models/itemClass');
+// instantiate Item
+const Item = require('../models/itemSchema');
 
 let errorsArray = []
 let itemTagsArray = []
@@ -25,7 +26,7 @@ exports.getIndex = (req, res, next) => {
 exports.getAllItems = (req, res, next) => {
   Item.find()
     .then(items => {
-      res.render('home/item-listView', {
+      res.render('home/itemsView', {
         items: items,
         pageTitle: 'All items',
         path: '/item-list',

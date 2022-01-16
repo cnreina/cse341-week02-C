@@ -42,10 +42,10 @@ const cors = require('cors')
 
 const LOCAL_PORT = 3000;
 const HEROKU_APP_URL = "https://cse341nodejsapp.herokuapp.com/";
-const corsOptions = { origin: HEROKU_APP_URL, optionsSuccessStatus: 200 };
+const CORS_OPTIONS = { origin: HEROKU_APP_URL, optionsSuccessStatus: 200 };
 
 // routes
-const homeRoutes = require('./routes/homeRoute');
+const itemRoutes = require('./routes/itemRoutes');
 const errorController = require('./controllers/errorController');
 
 // app
@@ -54,9 +54,9 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(homeRoutes);
+app.use(itemRoutes);
 app.use(errorController.get404);
-app.use(cors(corsOptions));
+app.use(cors(CORS_OPTIONS));
 
 // prepare mongoDB connection
 const filePath = path.join(
