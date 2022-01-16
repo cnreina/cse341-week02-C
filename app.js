@@ -40,13 +40,14 @@ const path = require('path');
 const fs = require('fs');
 const cors = require('cors')
 
-const LOCAL_PORT = 3000;
-const HEROKU_APP_URL = "https://cse341nodejsapp.herokuapp.com/";
-const CORS_OPTIONS = { origin: HEROKU_APP_URL, optionsSuccessStatus: 200 };
+const LOCAL_PORT      = 3000;
+const HEROKU_APP_URL  = "https://cse341nodejsapp.herokuapp.com/";
+const CORS_OPTIONS    = { origin: HEROKU_APP_URL, optionsSuccessStatus: 200 };
+const FILE_PATH       = path.join(path.dirname(process.mainModule.filename), 'data', 'mongodbstring.txt');
 
 // routes
+const errorRoutes = require('./routes/errorRoutes');
 const itemRoutes = require('./routes/itemRoutes');
-const errorController = require('./controllers/errorController');
 
 // app
 const app = express();
@@ -55,16 +56,11 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(itemRoutes);
-app.use(errorController.get404);
+app.use(errorRoutes);
 app.use(cors(CORS_OPTIONS));
 
 // prepare mongoDB connection
-const filePath = path.join(
-  path.dirname(process.mainModule.filename),
-  'data',
-  'mongodbstring.txt'
-);
-fs.readFile(filePath, (err, fileContent) => {
+fs.readFile(FILE_PATH, (err, fileContent) => {
   if (err) {
     console.log(err);
   } else {
